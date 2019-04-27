@@ -6,6 +6,7 @@ package com.tobspr.androidnotch;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
+import android.view.Display;
 import android.view.DisplayCutout;
 import android.view.View;
 import android.view.Window;
@@ -40,31 +41,43 @@ public class AndroidNotch extends CordovaPlugin {
         final Activity activity = this.cordova.getActivity();
         final Window window = activity.getWindow();
 
+        if ("setLayout".equals("action")) {
+            this.webView.getView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            return true;
+        }
+
         if(Build.VERSION.SDK_INT < 23) {
+
             // Insets are not available on api < 23
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
             return true;
         }
 
         final WindowInsets insets = getInsets();
+        final DisplayCutout cutout = insets.getDisplayCutout();
+
+        if ("hasCutout".equals(action)) {
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null));
+            return true;
+        }
 
         if ("getInsetsTop".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetTop()));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetTop() : 0));
             return true;
         }
         
         if ("getInsetsRight".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetRight()));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetRight() : 0));
             return true;
         }
 
         if ("getInsetsBottom".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetBottom()));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetBottom() : 0));
             return true;
         }
 
         if ("getInsetsLeft".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetLeft()));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetLeft() : 0));
             return true;
         }
 

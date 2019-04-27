@@ -4,6 +4,15 @@ var exec = require("cordova/exec");
 
 var AndroidNotch = {
 
+
+    hasCutout: function(success, error) {
+        exec(success, error, "AndroidNotch", "hasCutout");
+    },
+    
+    setLaoyut: function(success, error) {
+        exec(success, error, "AndroidNotch", "setLayout");
+    },
+
     getInsetTop: function (success, error) {
         exec(success, error, "AndroidNotch", "getInsetsTop");
     },
@@ -19,7 +28,7 @@ var AndroidNotch = {
     getInsetLeft: function (success, error) {
         exec(success, error, "AndroidNotch", "getInsetsLeft");
     }
-    
+
 };
 
 
