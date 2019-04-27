@@ -5,21 +5,21 @@ var exec = require("cordova/exec");
 var AndroidNotch = {
 
     getInsetTop: function (success, error) {
-        success(30);
+        exec(success, error, "AndroidNotch", "getInsetsTop");
     },
-
+    
     getInsetRight: function (success, error) {
-        success(31);
+        exec(success, error, "AndroidNotch", "getInsetsRight");
     },
-
+    
     getInsetBottom: function (success, error) {
-        success(32);
+        exec(success, error, "AndroidNotch", "getInsetsBottom");
     },
-
+    
     getInsetLeft: function (success, error) {
-        success(33);
+        exec(success, error, "AndroidNotch", "getInsetsLeft");
     }
-
+    
 };
 
 
