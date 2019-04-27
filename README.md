@@ -24,7 +24,7 @@ If you want to use those variables in css, here's a possibility:
 
 ```js
 
-// Call this on resize or orientationchange
+// Call this on resize or orientationchange, but *after* the deviceready event
 function detectInsets() {
     if (window.AndroidNotch) {
         const style = document.documentElement.style;
