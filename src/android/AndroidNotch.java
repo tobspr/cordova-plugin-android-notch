@@ -3,9 +3,13 @@
 
 package com.tobspr.androidnotch;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
+import android.view.DisplayCutout;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 
 import org.apache.cordova.CallbackContext;
@@ -36,24 +40,31 @@ public class AndroidNotch extends CordovaPlugin {
         final Activity activity = this.cordova.getActivity();
         final Window window = activity.getWindow();
 
+        if(Build.VERSION.SDK_INT < 23) {
+            // Insets are not available on api < 23
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
+            return true;
+        }
+
+        final WindowInsets insets = getInsets();
 
         if ("getInsetsTop".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 35));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetTop()));
             return true;
         }
         
         if ("getInsetsRight".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 36));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetRight()));
             return true;
         }
 
         if ("getInsetsBottom".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 37));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetBottom()));
             return true;
         }
 
         if ("getInsetsLeft".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 38));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, insets.getStableInsetLeft()));
             return true;
         }
 
@@ -61,4 +72,8 @@ public class AndroidNotch extends CordovaPlugin {
         return false;
     }
 
+    @TargetApi(23)
+    private WindowInsets getInsets() {
+        return this.webView.getView().getRootWindowInsets();
+    }
 }
