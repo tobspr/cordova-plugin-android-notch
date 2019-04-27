@@ -19,7 +19,7 @@ import org.json.JSONException;
 import java.util.Arrays;
 
 
-public class StatusBar extends CordovaPlugin {
+public class AndroidNotch extends CordovaPlugin {
     private static final String TAG = "AndroidNotch";
 
     
