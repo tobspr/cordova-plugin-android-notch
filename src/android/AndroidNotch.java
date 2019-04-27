@@ -38,22 +38,22 @@ public class AndroidNotch extends CordovaPlugin {
 
 
         if ("getInsetsTop".equals(action)) {
-            callbackContext.sendPluginResult(35);
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 35));
             return true;
         }
         
         if ("getInsetsRight".equals(action)) {
-            callbackContext.sendPluginResult(36);
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 36));
             return true;
         }
 
         if ("getInsetsBottom".equals(action)) {
-            callbackContext.sendPluginResult(37);
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 37));
             return true;
         }
 
         if ("getInsetsLeft".equals(action)) {
-            callbackContext.sendPluginResult(38);
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 38));
             return true;
         }
 
