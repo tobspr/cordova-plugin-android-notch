@@ -56,28 +56,30 @@ public class AndroidNotch extends CordovaPlugin {
         final WindowInsets insets = getInsets();
         final DisplayCutout cutout = insets.getDisplayCutout();
 
+        float density = activity.getResources().getDisplayMetrics().density;
+
         if ("hasCutout".equals(action)) {
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null));
             return true;
         }
 
         if ("getInsetsTop".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetTop() : 0));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? (cutout.getSafeInsetTop() / density) : 0));
             return true;
         }
         
         if ("getInsetsRight".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetRight() : 0));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? (cutout.getSafeInsetRight() / density) : 0));
             return true;
         }
 
         if ("getInsetsBottom".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetBottom() : 0));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? (cutout.getSafeInsetBottom() / density) : 0));
             return true;
         }
 
         if ("getInsetsLeft".equals(action)) {
-            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? cutout.getSafeInsetLeft() : 0));
+            callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, cutout != null ? (cutout.getSafeInsetLeft() / density) : 0));
             return true;
         }
 
