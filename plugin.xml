@@ -38,7 +38,7 @@
         <source-file src="src/android/AndroidNotch.java" target-dir="src/com/tobspr/androidnotch" />
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="AndroidNotch">
-                <param name="android-package" value="com.tobspr.AndroidNotch" />
+                <param name="android-package" value="com.tobspr.androidnotch.AndroidNotch" />
                 <param name="onload" value="true" />
             </feature>
         </config-file>
