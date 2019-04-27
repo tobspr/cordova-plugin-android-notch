@@ -9,7 +9,7 @@ var AndroidNotch = {
         run(success, error, "AndroidNotch", "hasCutout");
     },
 
-    setLaoyut: function(success, error) {
+    setLayout: function(success, error) {
         run(success, error, "AndroidNotch", "setLayout");
     },
 
