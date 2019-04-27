@@ -1,0 +1,36 @@
+{
+  "name": "cordova-plugin-android-notch",
+  "version": "1.0.0",
+  "description": "Cordova Android Notch Plugin",
+  "cordova": {
+    "id": "cordova-plugin-android-notch",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tobspr/cordova-plugin-android-notch"
+  },
+  "keywords": [
+    "cordova",
+    "android",
+    "notch",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "scripts": {},
+  "engines": {
+    "cordovaDependencies": {
+      "0.1.0": {
+        "cordova": ">=3.0.0"
+      },
+      "3.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "author": "tobspr",
+  "license": "MIT",
+  "devDependencies": {}
+}
