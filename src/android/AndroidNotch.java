@@ -46,9 +46,9 @@ public class AndroidNotch extends CordovaPlugin {
             return true;
         }
 
-        if(Build.VERSION.SDK_INT < 23) {
+        if(Build.VERSION.SDK_INT < 28) {
 
-            // Insets are not available on api < 23
+            // DisplayCutout is not available on api < 28
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, 0));
             return true;
         }
