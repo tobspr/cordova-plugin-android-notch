@@ -72,3 +72,72 @@ body {
 ## Compatibility
 
 This plugin works on all android versions, but we can only detect notches starting from Android 9. They have been available on Android 8 as vendor specific additions, but I haven't figured how to detect those yet. Feel free to make a PR!
+
+
+## SCSS Snippet
+
+Assuming you set the `--notch-inset-top` variables as described above, you can use this SCSS snippet to make the notch work on android and iOs:
+
+```scss
+// ----------------------------------------
+/* Defines a property which is affected by the safe area */
+@mixin SafeAreaTop($propToModify, $add: 0px, $important: false) {
+    $importantStr: "";
+    @if ($important) {
+        $importantStr: "!important";
+    }
+    #{$propToModify}: #{$add} #{$importantStr};
+    #{$propToModify}: calc(#{$add} + var(--notch-inset-top)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + constant(safe-area-inset-top) + var(--notch-inset-top)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + env(safe-area-inset-top, 0px) + var(--notch-inset-top)) #{$importantStr};
+}
+
+// ----------------------------------------
+/* Defines a property which is affected by the safe area */
+@mixin SafeAreaRight($propToModify, $add: 0px, $important: false) {
+    $importantStr: "";
+    @if ($important) {
+        $importantStr: " !important";
+    }
+    #{$propToModify}: #{$add} #{$importantStr};
+    #{$propToModify}: calc(#{$add} + var(--notch-inset-right)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + constant(safe-area-inset-right) + var(--notch-inset-right)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + env(safe-area-inset-right, 0px) + var(--notch-inset-right)) #{$importantStr};
+}
+
+// ----------------------------------------
+/* Defines a property which is affected by the safe area */
+@mixin SafeAreaBottom($propToModify, $add: 0px, $important: false) {
+    $importantStr: "";
+    @if ($important) {
+        $importantStr: " !important";
+    }
+    #{$propToModify}: #{$add} #{$importantStr};
+    #{$propToModify}: calc(#{$add} + var(--notch-inset-bottom)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + constant(safe-area-inset-bottom) + var(--notch-inset-bottom)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + env(safe-area-inset-bottom, 0px) + var(--notch-inset-bottom)) #{$importantStr};
+}
+
+// ----------------------------------------
+/* Defines a property which is affected by the safe area */
+@mixin SafeAreaLeft($propToModify, $add: 0px, $important: false) {
+    $importantStr: "";
+    @if ($important) {
+        $importantStr: " !important";
+    }
+    #{$propToModify}: #{$add} #{$importantStr};
+    #{$propToModify}: calc(#{$add} + var(--notch-inset-left)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + constant(safe-area-inset-left) + var(--notch-inset-left)) #{$importantStr};
+    #{$propToModify}: calc(#{$add} + env(safe-area-inset-left, 0px) + var(--notch-inset-left)) #{$importantStr};
+}
+```
+
+Usage Example:
+
+```scss
+
+body {
+  @include SafeAreaTop(padding-top, 20px);
+}
+
+```
