@@ -41,7 +41,7 @@ public class AndroidNotch extends CordovaPlugin {
         final Activity activity = this.cordova.getActivity();
         final Window window = activity.getWindow();
 
-        if ("setLayout".equals("action")) {
+        if ("setLayout".equals(action)) {
             this.webView.getView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             return true;
         }
